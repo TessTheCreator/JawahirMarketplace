@@ -30,14 +30,33 @@ namespace Jawahir.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
 
-                    b.Property<int>("MarketId")
-                        .HasColumnType("int");
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CartItems")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CartId");
 
-                    b.HasIndex("MarketId");
-
                     b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("Jawahir.Models.CartModel.CartItem", b =>
+                {
+                    b.Property<int>("CartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartItemId"), 1L, 1);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartItemId");
+
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("Jawahir.Models.CategoryModel.Category", b =>
@@ -92,9 +111,6 @@ namespace Jawahir.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -115,8 +131,6 @@ namespace Jawahir.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");
-
-                    b.HasIndex("CartId");
 
                     b.HasIndex("MarketId");
 
@@ -393,17 +407,6 @@ namespace Jawahir.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Jawahir.Models.CartModel.Cart", b =>
-                {
-                    b.HasOne("Jawahir.Models.MarketModel.Market", "Market")
-                        .WithMany()
-                        .HasForeignKey("MarketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Market");
-                });
-
             modelBuilder.Entity("Jawahir.Models.MarketModel.Market", b =>
                 {
                     b.HasOne("Jawahir.Models.User.ApplicationUser", null)
@@ -415,10 +418,6 @@ namespace Jawahir.Migrations
 
             modelBuilder.Entity("Jawahir.Models.ProductModel.Product", b =>
                 {
-                    b.HasOne("Jawahir.Models.CartModel.Cart", null)
-                        .WithMany("Products")
-                        .HasForeignKey("CartId");
-
                     b.HasOne("Jawahir.Models.MarketModel.Market", "Market")
                         .WithMany("Products")
                         .HasForeignKey("MarketId");
@@ -475,11 +474,6 @@ namespace Jawahir.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Jawahir.Models.CartModel.Cart", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Jawahir.Models.MarketModel.Market", b =>

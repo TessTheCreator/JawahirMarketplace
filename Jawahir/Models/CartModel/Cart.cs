@@ -6,7 +6,7 @@ namespace Jawahir.Models.CartModel
 	public class Cart
 	{
 		public int CartId { get; set; }
-		public List<CartItem> CartItems { get; set;} = new List<CartItem>();
+		public string CartItems { get; set;} = string.Empty;
         public string ApplicationUserId { get; set; }
 
 
