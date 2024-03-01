@@ -1,0 +1,48 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #FEFBEE;
+}
+}
+
+body {
+    padding-top: 10px;
+}
+
+nav {
+    height: 100px;
+    color: white;
+}
+
+.nav-link, .navbar-brand {
+    color: white;
+}
+
+.rowclass {
+    height: 100%;
+
+}
+
+.search-item {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+    width: auto;
+}
+
+.col-12 {
+    width: auto;
+}
+
+.nav-container {
+    padding-left: 200px;
+    padding-right: 200px;
+    background-color: #566830;
+}
+
+.sub-container {
+    background-color: #dcc083;
+    margin-bottom: 80px;
+}

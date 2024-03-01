@@ -1,0 +1,29 @@
+﻿
+@using Jawahir.Models.ProductModel;
+@using Jawahir.Models.User;
+
+@model Jawahir.Models.MarketModel.Market
+<link href="~/css/allproductsview.css" rel="stylesheet" />
+
+<div class="market_container ">
+
+	<h1> @Model.MarketName </h1>
+	<h3> @Model.MarketDescription</h3>
+
+
+    @if (Model != null)
+    {
+        <span>Check out these products</span>
+
+        <div class="container">
+            <div class="row">
+                @foreach (var product in Model.Products)
+                {
+                    <partial name="_ProductCardView" model="product" />
+                }
+            </div>
+        </div>
+    }
+	<a class="btn btn-secondary" asp-controller="Product" asp-action="AddNewProduct">Add new Product</a>
+
+</div>

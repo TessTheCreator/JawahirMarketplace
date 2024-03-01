@@ -1,0 +1,16 @@
+﻿@model Jawahir.ViewModels.SearchProductsViewModel
+
+
+@if (Model != null)
+{
+    <span>Check out these products</span>
+
+    <div class="container">
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <partial name="_ProductCardView" model="product" />
+            }
+        </div>
+    </div>
+}

@@ -1,0 +1,18 @@
+﻿@model Jawahir.Models.ProductModel.Product
+
+
+
+<link href="~/css/productcard.css" rel="stylesheet" />
+
+
+<div class="card user_market_card col-md-3 col-lg-2 col-sm-6 m-3 p-0">
+    <img src="~/assets/images/camerabkg.jpg" class="card-img-top img-fluid" alt="@Model.ProductName"  />
+    <div class="card-body p-2">
+       <!-- <img src="@Model.ProductImage" class="card-img-top img-fluid" alt="@Model.ProductName"> -->
+        <div class="">
+            <span class="overflow-hidden d-block">@Model.ProductName</span>
+            <span class="d-inline">@Model.ProductRating</span>
+            <a class="btn bg-transparent stretched-link d-inline invisible" asp-controller="Product" asp-action="ShowProductDetails" asp-route-productId="@Model.ProductId"></a>
+        </div>
+    </div>
+</div>
